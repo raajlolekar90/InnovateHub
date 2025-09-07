@@ -192,7 +192,7 @@
             transform: translateY(-3px);
         }
         
-        /* Tools Section - Moved to top */
+        /* Tools Section */
         .tools {
             padding: 80px 0;
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(99, 102, 241, 0.05) 100%);
@@ -283,7 +283,7 @@
             background-color: var(--primary-dark);
         }
         
-        /* Features Section - Moved below tools */
+        /* Features Section */
         .features {
             padding: 80px 0;
             background-color: white;
@@ -320,6 +320,7 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             transition: var(--transition);
             text-align: center;
+            cursor: pointer;
         }
         
         .feature-card:hover {
@@ -348,6 +349,73 @@
         
         .feature-card p {
             color: var(--gray);
+        }
+        
+        /* Feature Details Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 800px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+        
+        .close-modal:hover {
+            color: var(--dark);
+        }
+        
+        .modal-header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .modal-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .modal-body {
+            line-height: 1.8;
+        }
+        
+        .modal-body h3 {
+            color: var(--primary-dark);
+            margin: 20px 0 10px;
+        }
+        
+        .modal-body ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .modal-body li {
+            margin-bottom: 8px;
         }
         
         /* CTA Section */
@@ -470,6 +538,11 @@
                 font-size: 1.7rem;
                 text-align: center;
             }
+            
+            .modal-content {
+                margin: 20px auto;
+                padding: 20px;
+            }
         }
     </style>
 </head>
@@ -487,6 +560,7 @@
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#tools">Tools</a></li>
+                    <li><a href="#features">Features</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -501,13 +575,13 @@
             <h1>Supercharge Your Workflow With AI Tools</h1>
             <p>InnovateHub provides cutting-edge AI tools to help you automate tasks, analyze data, and boost your productivity - all for free!</p>
             <div class="hero-buttons">
-                <button class="primary-btn">Explore Tools</button>
-                <button class="secondary-btn">Learn More</button>
+                <button class="primary-btn" id="explore-tools-btn">Explore Tools</button>
+                <button class="secondary-btn" id="learn-more-btn">Learn More</button>
             </div>
         </div>
     </section>
 
-    <!-- Tools Section - Moved to the top -->
+    <!-- Tools Section -->
     <section id="tools" class="tools">
         <span class="section-anchor" id="tools-anchor"></span>
         <div class="container">
@@ -683,29 +757,30 @@
         </div>
     </section>
 
-    <!-- Features Section - Moved below tools -->
-    <section class="features">
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <span class="section-anchor" id="features-anchor"></span>
         <div class="container">
             <div class="section-title">
                 <h2>Why Choose InnovateHub?</h2>
                 <p>We provide the next generation of AI-powered tools to help you work smarter, not harder</p>
             </div>
             <div class="features-grid">
-                <div class="feature-card">
+                <div class="feature-card" data-feature="lightning">
                     <div class="feature-icon">
                         <i class="fas fa-bolt"></i>
                     </div>
                     <h3>Lightning Fast</h3>
                     <p>Our tools process data and generate results in seconds, saving you valuable time.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card" data-feature="secure">
                     <div class="feature-icon">
                         <i class="fas fa-lock"></i>
                     </div>
                     <h3>Secure & Private</h3>
                     <p>Your data is always encrypted and never stored on our servers after processing.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card" data-feature="premium">
                     <div class="feature-icon">
                         <i class="fas fa-crown"></i>
                     </div>
@@ -740,13 +815,6 @@
                     </div>
                     <h3>Email Us</h3>
                     <p>Send us a message at support@innovatehub.com and we'll respond within 24 hours.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-comment-dots"></i>
-                    </div>
-                    <h3>Live Chat</h3>
-                    <p>Chat with our support team in real-time during business hours (9AM-5PM EST).</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -796,14 +864,147 @@
         </div>
     </footer>
 
+    <!-- Feature Details Modal -->
+    <div class="modal" id="feature-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2 id="modal-title">Feature Details</h2>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Content will be inserted by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Learn More Modal -->
+    <div class="modal" id="learn-more-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>About InnovateHub</h2>
+            </div>
+            <div class="modal-body">
+                <p>InnovateHub is a cutting-edge platform offering a wide range of AI-powered tools designed to boost your productivity and simplify your workflow. Our mission is to provide high-quality, free tools that help individuals and businesses work smarter, not harder.</p>
+                
+                <h3>Our Vision</h3>
+                <p>We believe that technology should be accessible to everyone. That's why we've created a suite of powerful tools that are completely free to use, with no hidden costs or limitations.</p>
+                
+                <h3>What We Offer</h3>
+                <ul>
+                    <li><strong>Media Conversion Tools:</strong> Convert between various media formats with ease</li>
+                    <li><strong>Content Creation Tools:</strong> Enhance your content with our AI-powered utilities</li>
+                    <li><strong>Calculator Tools:</strong> Perform complex calculations with simple interfaces</li>
+                </ul>
+                
+                <h3>Our Commitment</h3>
+                <p>We are committed to continuously improving our tools and adding new features based on user feedback. Your privacy and data security are our top priorities, and we never store your personal information or files after processing.</p>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Simple JavaScript for interactive elements
         document.addEventListener('DOMContentLoaded', function() {
-            const ctaButtons = document.querySelectorAll('.primary-btn, .secondary-btn, .cta-button');
+            const ctaButtons = document.querySelectorAll('.primary-btn, .cta-button');
             
             ctaButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     alert('Thank you for your interest in InnovateHub! This feature will be available soon.');
+                });
+            });
+            
+            // Explore Tools button functionality
+            document.getElementById('explore-tools-btn').addEventListener('click', function() {
+                const toolsSection = document.getElementById('tools');
+                const offsetTop = toolsSection.offsetTop - 80;
+                
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Learn More button functionality
+            document.getElementById('learn-more-btn').addEventListener('click', function() {
+                document.getElementById('learn-more-modal').style.display = 'block';
+            });
+            
+            // Feature card click functionality
+            document.querySelectorAll('.feature-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const feature = this.getAttribute('data-feature');
+                    const modal = document.getElementById('feature-modal');
+                    const modalTitle = document.getElementById('modal-title');
+                    const modalBody = document.getElementById('modal-body');
+                    
+                    // Set modal content based on which feature was clicked
+                    if (feature === 'lightning') {
+                        modalTitle.textContent = 'Lightning Fast Processing';
+                        modalBody.innerHTML = `
+                            <p>Our tools are optimized for speed and efficiency, delivering results in seconds rather than minutes.</p>
+                            <h3>Key Benefits:</h3>
+                            <ul>
+                                <li>Advanced algorithms process data up to 10x faster than competitors</li>
+                                <li>Optimized server infrastructure for minimal latency</li>
+                                <li>Batch processing capabilities for handling multiple files simultaneously</li>
+                                <li>Progressive loading so you can see results as they're generated</li>
+                            </ul>
+                            <h3>How We Achieve This Speed:</h3>
+                            <p>We utilize cutting-edge technology including WebAssembly, multi-threading, and GPU acceleration to ensure your tasks complete as quickly as possible. Our distributed server network means your requests are processed by the nearest available server, reducing latency.</p>
+                        `;
+                    } else if (feature === 'secure') {
+                        modalTitle.textContent = 'Secure & Private';
+                        modalBody.innerHTML = `
+                            <p>Your privacy and data security are our top priorities. We implement industry-leading security measures to protect your information.</p>
+                            <h3>Our Security Features:</h3>
+                            <ul>
+                                <li>End-to-end encryption for all data transfers</li>
+                                <li>Automatic deletion of files after processing (within 1 hour)</li>
+                                <li>No personal information collection</li>
+                                <li>Regular security audits and penetration testing</li>
+                                <li>SSL/TLS encryption for all connections</li>
+                            </ul>
+                            <h3>Privacy Commitment:</h3>
+                            <p>We believe privacy is a fundamental right. That's why we designed our system to process your files without storing them long-term. Your files are temporarily stored only during processing and are automatically deleted from our servers once complete. We never share your data with third parties.</p>
+                        `;
+                    } else if (feature === 'premium') {
+                        modalTitle.textContent = 'Premium Features - Completely Free';
+                        modalBody.innerHTML = `
+                            <p>Access advanced functionality that competitors charge for - without paying a dime.</p>
+                            <h3>What You Get For Free:</h3>
+                            <ul>
+                                <li>Unlimited usage of all tools with no daily limits</li>
+                                <li>No watermarks on output files</li>
+                                <li>High-quality processing equivalent to paid services</li>
+                                <li>Priority processing with no queues</li>
+                                <li>Access to all current and future tools</li>
+                            </ul>
+                            <h3>How We Can Offer This For Free:</h3>
+                            <p>We're able to provide these premium features for free through optimized infrastructure costs and optional non-intrusive advertising. Our mission is to make powerful tools accessible to everyone, regardless of their budget.</p>
+                            <p>We may offer optional premium support or enterprise features in the future, but our core tools will always remain free to use.</p>
+                        `;
+                    }
+                    
+                    modal.style.display = 'block';
+                });
+            });
+            
+            // Close modal functionality
+            document.querySelectorAll('.close-modal').forEach(closeBtn => {
+                closeBtn.addEventListener('click', function() {
+                    document.querySelectorAll('.modal').forEach(modal => {
+                        modal.style.display = 'none';
+                    });
+                });
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    if (event.target === modal) {
+                        modal.style.display = 'none';
+                    }
                 });
             });
             
