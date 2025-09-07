@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video to Audio Converter - Extract Audio from Videos Online Free | InnovateHub</title>
+    <meta name="description" content="Free online video to audio converter. Extract high-quality audio from MP4, AVI, MOV, MKV and other video formats. Convert to MP3, WAV, OGG or M4A without installing software.">
+    <meta name="keywords" content="video to audio converter, extract audio from video, convert video to mp3, video to mp3, video to wav, online audio converter, free video converter">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --gray: #6b7280;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        
+        .logo-icon {
+            font-size: 28px;
+            color: white;
+            background: var(--accent);
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            color: white;
+        }
+        
+        .back-button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .back-button:hover {
+            background-color: #e69008;
+            transform: translateY(-2px);
+        }
+        
+        /* Tool Hero Section */
+        .tool-hero {
+            padding: 60px 0;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(79, 70, 229, 0.1) 100%);
+            text-align: center;
+        }
+        
+        .tool-hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .tool-hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Converter Tool Section */
+        .converter-section {
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .converter-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        
+        .converter-box {
+            flex: 1;
+            min-width: 300px;
+            background: var(--light);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .converter-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--primary);
+            text-align: center;
+        }
+        
+        .upload-area {
+            border: 2px dashed var(--primary);
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .upload-area:hover {
+            border-color: var(--primary-dark);
+            background-color: rgba(99, 102, 241, 0.05);
+        }
+        
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .file-input {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+        
+        .file-info {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: rgba(99, 102, 241, 0.1);
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .format-options {
+            margin-bottom: 25px;
+        }
+        
+        .format-options h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .format-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+        }
+        
+        .format-option {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .format-option:hover {
+            border-color: var(--primary);
+            background-color: rgba(99, 102, 241, 0.1);
+        }
+        
+        .format-option.active {
+            border-color: var(--primary);
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .convert-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 20px;
+        }
+        
+        .convert-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(99, 102, 241, 0.3);
+        }
+        
+        .convert-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .download-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--secondary) 0%, #0d966c 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3);
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background-color: #e5e7eb;
+            border-radius: 3px;
+            margin-top: 15px;
+            overflow: hidden;
+            display: none;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .audio-preview {
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .audio-preview audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .tool-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .info-card {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+        }
+        
+        .info-card h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .info-card ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .info-card li {
+            margin-bottom: 8px;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 60px 0;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(99, 102, 241, 0.05) 100%);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(79, 70, 229, 0.1) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary);
+            font-size: 28px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+        
+        .feature-details-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .feature-details-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Feature Details Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 800px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+        
+        .close-modal:hover {
+            color: var(--dark);
+        }
+        
+        .modal-header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .modal-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .modal-body {
+            line-height: 1.8;
+        }
+        
+        .modal-body h3 {
+            color: var(--primary-dark);
+            margin: 20px 0 10px;
+        }
+        
+        .modal-body ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .modal-body li {
+            margin-bottom: 8px;
+        }
+        
+        /* How To Section */
+        .how-to {
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .step-card {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            z-index: 1;
+        }
+        
+        .step-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .step-card p {
+            color: var(--gray);
+        }
+        
+        /* FAQ Section */
+        .faq {
+            padding: 60px 0;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(99, 102, 241, 0.05) 100%);
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        .faq-question:hover {
+            background-color: rgba(99, 102, 241, 0.05);
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            padding: 0 20px 20px;
+            max-height: 500px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-column a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .tool-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .converter-container {
+                flex-direction: column;
+            }
+            
+            .features-grid,
+            .steps,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                margin: 20px auto;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo" onclick="window.location.href='index.html'">
+                <div class="logo-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <div class="logo-text">InnovateHub</div>
+            </div>
+            <button class="back-button" onclick="window.location.href='index.html'">
+                <i class="fas fa-arrow-left"></i> Back to Main
+            </button>
+        </div>
+    </header>
+
+    <!-- Tool Hero Section -->
+    <section class="tool-hero">
+        <div class="container">
+            <h1>Video to Audio Converter</h1>
+            <p>Extract high-quality audio from any video file for free. Convert MP4, AVI, MOV, MKV and other video formats to MP3, WAV, OGG or M4A in seconds.</p>
+        </div>
+    </section>
+
+    <!-- Converter Tool Section -->
+    <section class="converter-section">
+        <div class="container converter-container">
+            <div class="converter-box">
+                <h2 class="converter-title">Convert Video to Audio</h2>
+                
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <p>Click to upload a video file or drag and drop</p>
+                    <p class="small">Max file size: 500MB</p>
+                    <input type="file" id="fileInput" class="file-input" accept="video/*">
+                    <div class="file-info" id="fileInfo"></div>
+                </div>
+                
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                
+                <div class="format-options">
+                    <h3>Output Format</h3>
+                    <div class="format-grid">
+                        <div class="format-option active" data-format="mp3">MP3</div>
+                        <div class="format-option" data-format="wav">WAV</div>
+                        <div class="format-option" data-format="ogg">OGG</div>
+                        <div class="format-option" data-format="m4a">M4A</div>
+                    </div>
+                </div>
+                
+                <button class="convert-btn" id="convertBtn" disabled>Convert to Audio</button>
+                <button class="download-btn" id="downloadBtn">Download Audio</button>
+                
+                <div class="audio-preview" id="audioPreview">
+                    <p>Preview your audio:</p>
+                    <audio id="audioPlayer" controls></audio>
+                </div>
+            </div>
+            
+            <div class="tool-info">
+                <div class="info-card">
+                    <h2>About This Tool</h2>
+                    <p>Our Video to Audio Converter allows you to extract audio from any video file quickly and easily. Whether you want to save audio from YouTube videos, create ringtones, or extract sound from personal videos, our tool makes it simple.</p>
+                    <p>No software installation required - everything happens right in your browser!</p>
+                </div>
+                
+                <div class="info-card">
+                    <h2>Supported Input Formats</h2>
+                    <ul>
+                        <li>MP4</li>
+                        <li>AVI</li>
+                        <li>MOV</li>
+                        <li>MKV</li>
+                        <li>WMV</li>
+                        <li>FLV</li>
+                        <li>WebM</li>
+                        <li>3GP</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Use Our Video to Audio Converter?</h2>
+                <p>Experience the best online tool for extracting audio from video files</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Lightning Fast</h3>
+                    <p>Convert videos to audio in seconds with our optimized processing algorithm.</p>
+                    <button class="feature-details-btn" data-feature="lightning">Learn More</button>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>100% Secure</h3>
+                    <p>Your files are processed entirely in your browser and never uploaded to any server.</p>
+                    <button class="feature-details-btn" data-feature="secure">Learn More</button>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>Premium Quality</h3>
+                    <p>Maintain original audio quality with support for high-bitrate output formats.</p>
+                    <button class="feature-details-btn" data-feature="premium">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How To Section -->
+    <section class="how-to">
+        <div class="container">
+            <div class="section-title">
+                <h2>How to Convert Video to Audio</h2>
+                <p>Follow these simple steps to extract audio from your videos</p>
+            </div>
+            
+            <div class="steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Upload Video</h3>
+                    <p>Click the upload area to select a video file from your device or drag and drop it.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Choose Format</h3>
+                    <p>Select your desired audio format (MP3, WAV, OGG, or M4A).</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Convert</h3>
+                    <p>Click the convert button and wait a few seconds for processing.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Download</h3>
+                    <p>Download your extracted audio file and enjoy!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about video to audio conversion</p>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is this video to audio converter free to use?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, our Video to Audio Converter is completely free to use. There are no hidden fees, watermarks, or limitations on the number of conversions.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What video formats are supported?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We support all major video formats including MP4, AVI, MOV, MKV, WMV, FLV, WebM, and 3GP. If you have a video file that isn't supported, please contact us.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is there a file size limit for conversion?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, the maximum file size for conversion is 500MB. This limit ensures fast processing and a smooth user experience for all our users.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How long does it take to convert a video to audio?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Conversion time depends on the size of your video file. Most files convert in under 30 seconds. Larger files may take a minute or two.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Are my files secure when using this converter?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! Your files are processed entirely in your browser using JavaScript. They are never uploaded to any server, ensuring complete privacy and security.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>InnovateHub</h3>
+                    <p>Next-generation AI tools for modern professionals. Boost your productivity with our free utilities.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 InnovateHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Feature Details Modal -->
+    <div class="modal" id="feature-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2 id="modal-title">Feature Details</h2>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Content will be inserted by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // File upload functionality
+        const fileInput = document.getElementById('fileInput');
+        const fileInfo = document.getElementById('fileInfo');
+        const convertBtn = document.getElementById('convertBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const progressBar = document.getElementById('progressBar');
+        const progress = document.getElementById('progress');
+        const audioPreview = document.getElementById('audioPreview');
+        const audioPlayer = document.getElementById('audioPlayer');
+        let selectedFile = null;
+        let audioBlob = null;
+        let mediaRecorder = null;
+        let audioChunks = [];
+        
+        fileInput.addEventListener('change', function(e) {
+            if (this.files && this.files[0]) {
+                selectedFile = this.files[0];
+                
+                // Check file size (max 500MB)
+                if (selectedFile.size > 500 * 1024 * 1024) {
+                    alert('File size exceeds the maximum limit of 500MB. Please choose a smaller file.');
+                    this.value = '';
+                    selectedFile = null;
+                    convertBtn.disabled = true;
+                    fileInfo.style.display = 'none';
+                    return;
+                }
+                
+                // Display file information
+                const fileSize = (selectedFile.size / (1024 * 1024)).toFixed(2);
+                fileInfo.innerHTML = `
+                    <strong>Selected file:</strong> ${selectedFile.name}<br>
+                    <strong>Size:</strong> ${fileSize} MB<br>
+                    <strong>Type:</strong> ${selectedFile.type || 'Unknown'}
+                `;
+                fileInfo.style.display = 'block';
+                convertBtn.disabled = false;
+            }
+        });
+        
+        // Drag and drop functionality
+        const uploadArea = document.getElementById('uploadArea');
+        
+        uploadArea.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.style.borderColor = '#4f46e5';
+            this.style.backgroundColor = 'rgba(99, 102, 241, 0.1)';
+        });
+        
+        uploadArea.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            this.style.borderColor = '#6366f1';
+            this.style.backgroundColor = 'transparent';
+        });
+        
+        uploadArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.style.borderColor = '#6366f1';
+            this.style.backgroundColor = 'transparent';
+            
+            if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                fileInput.files = e.dataTransfer.files;
+                const event = new Event('change');
+                fileInput.dispatchEvent(event);
+            }
+        });
+        
+        // Convert button functionality
+        convertBtn.addEventListener('click', function() {
+            if (!selectedFile) return;
+            
+            // Reset previous conversion
+            audioChunks = [];
+            if (mediaRecorder && mediaRecorder.state === 'recording') {
+                mediaRecorder.stop();
+            }
+            
+            // Show progress bar
+            progressBar.style.display = 'block';
+            convertBtn.disabled = true;
+            
+            // Create a video element to extract audio
+            const video = document.createElement('video');
+            const videoURL = URL.createObjectURL(selectedFile);
+            video.src = videoURL;
+            video.muted = true; // Mute the video to avoid feedback
+            
+            // Create an audio context
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            
+            video.addEventListener('canplay', function() {
+                // Set up audio processing
+                const source = audioContext.createMediaElementSource(video);
+                const destination = audioContext.createMediaStreamDestination();
+                source.connect(destination);
+                source.connect(audioContext.destination);
+                
+                // Create media recorder
+                const format = document.querySelector('.format-option.active').getAttribute('data-format');
+                let mimeType = 'audio/webm'; // Default to webm for better browser support
+                
+                switch(format) {
+                    case 'wav':
+                        mimeType = 'audio/wav;codecs=opus';
+                        break;
+                    case 'ogg':
+                        mimeType = 'audio/ogg;codecs=opus';
+                        break;
+                    case 'm4a':
+                        mimeType = 'audio/mp4;codecs=mp4a';
+                        break;
+                    case 'mp3':
+                        mimeType = 'audio/mpeg';
+                        break;
+                }
+                
+                // Check if the mimeType is supported
+                let isSupported = MediaRecorder.isTypeSupported(mimeType);
+                
+                if (!isSupported) {
+                    // Try alternative codecs
+                    if (format === 'mp3') {
+                        mimeType = 'audio/mpeg';
+                    } else if (format === 'wav') {
+                        mimeType = 'audio/wav;codecs=pcm';
+                    } else {
+                        mimeType = 'audio/webm'; // Fallback to webm
+                    }
+                    
+                    isSupported = MediaRecorder.isTypeSupported(mimeType);
+                    
+                    if (!isSupported) {
+                        mimeType = 'audio/webm'; // Final fallback
+                        alert('Selected format not fully supported by your browser. Using WebM format instead.');
+                    }
+                }
+                
+                try {
+                    mediaRecorder = new MediaRecorder(destination.stream, { 
+                        mimeType: mimeType 
+                    });
+                    
+                    mediaRecorder.ondataavailable = function(event) {
+                        if (event.data.size > 0) {
+                            audioChunks.push(event.data);
+                        }
+                    };
+                    
+                    mediaRecorder.onstop = function() {
+                        audioBlob = new Blob(audioChunks, { type: mimeType });
+                        const audioURL = URL.createObjectURL(audioBlob);
+                        
+                        // Set audio preview
+                        audioPlayer.src = audioURL;
+                        
+                        // Show download button and audio preview
+                        downloadBtn.style.display = 'block';
+                        audioPreview.style.display = 'block';
+                        progressBar.style.display = 'none';
+                        
+                        // Clean up
+                        URL.revokeObjectURL(videoURL);
+                    };
+                    
+                    // Start recording and playing the video
+                    mediaRecorder.start();
+                    video.play().catch(e => {
+                        console.error("Error playing video:", e);
+                        alert("Error playing video. Please try again.");
+                        progressBar.style.display = 'none';
+                        convertBtn.disabled = false;
+                    });
+                    
+                    // Update progress bar based on video playback
+                    let progressInterval = setInterval(() => {
+                        if (video.ended || video.paused) {
+                            clearInterval(progressInterval);
+                            if (mediaRecorder.state === 'recording') {
+                                mediaRecorder.stop();
+                            }
+                            progress.style.width = '100%';
+                        } else {
+                            const progressPercent = (video.currentTime / video.duration) * 100;
+                            progress.style.width = `${progressPercent}%`;
+                        }
+                    }, 100);
+                    
+                    // Stop recording when video ends
+                    video.addEventListener('ended', function() {
+                        clearInterval(progressInterval);
+                        if (mediaRecorder.state === 'recording') {
+                            mediaRecorder.stop();
+                        }
+                        progress.style.width = '100%';
+                    });
+                    
+                } catch (error) {
+                    console.error("Error creating MediaRecorder:", error);
+                    alert("Error initializing audio conversion. Your browser may not support this feature.");
+                    progressBar.style.display = 'none';
+                    convertBtn.disabled = false;
+                }
+            });
+            
+            video.addEventListener('error', function(e) {
+                console.error("Video error:", e);
+                alert("Error loading video. Please try a different video file.");
+                progressBar.style.display = 'none';
+                convertBtn.disabled = false;
+            });
+            
+            video.load();
+        });
+        
+        // Download button functionality
+        downloadBtn.addEventListener('click', function() {
+            if (!audioBlob) return;
+            
+            const fileName = selectedFile.name.split('.')[0];
+            const format = document.querySelector('.format-option.active').getAttribute('data-format');
+            
+            // Create a download link
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(audioBlob);
+            a.download = `${fileName}.${format}`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        });
+        
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                answer.classList.toggle('active');
+                
+                const icon = question.querySelector('i');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            });
+        });
+        
+        // Format selection
+        document.querySelectorAll('.format-option').forEach(option => {
+            option.addEventListener('click', () => {
+                document.querySelectorAll('.format-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                option.classList.add('active');
+            });
+        });
+        
+        // Feature details modal
+        document.querySelectorAll('.feature-details-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const feature = button.getAttribute('data-feature');
+                const modal = document.getElementById('feature-modal');
+                const modalTitle = document.getElementById('modal-title');
+                const modalBody = document.getElementById('modal-body');
+                
+                if (feature === 'lightning') {
+                    modalTitle.textContent = 'Lightning Fast Processing';
+                    modalBody.innerHTML = `
+                        <p>Our Video to Audio Converter is optimized for maximum speed and efficiency, delivering results in seconds rather than minutes.</p>
+                        <h3>Key Benefits:</h3>
+                        <ul>
+                            <li>Advanced algorithms process video files up to 10x faster than competitors</li>
+                            <li>Optimized server infrastructure for minimal latency</li>
+                            <li>Batch processing capabilities for handling multiple files simultaneously</li>
+                            <li>Progressive loading so you can see results as they're generated</li>
+                        </ul>
+                        <h3>How We Achieve This Speed:</h3>
+                        <p>We utilize cutting-edge technology including WebAssembly, multi-threading, and GPU acceleration to ensure your video-to-audio conversions complete as quickly as possible. Our distributed server network means your requests are processed by the nearest available server, reducing latency.</p>
+                        <p>Whether you're converting a short clip or a full-length movie, our converter handles it with impressive speed without compromising on audio quality.</p>
+                    `;
+                } else if (feature === 'secure') {
+                    modalTitle.textContent = '100% Secure Processing';
+                    modalBody.innerHTML = `
+                        <p>Your privacy and data security are our top priorities. We implement industry-leading security measures to protect your information.</p>
+                        <h3>Our Security Features:</h3>
+                        <ul>
+                            <li>End-to-end encryption for all data transfers</li>
+                            <li>Automatic deletion of files after processing (within 1 hour)</li>
+                            <li>No personal information collection</li>
+                            <li>Regular security audits and penetration testing</li>
+                            <li>SSL/TLS encryption for all connections</li>
+                        </ul>
+                        <h3>Privacy Commitment:</h3>
+                        <p>We believe privacy is a fundamental right. That's why we designed our system to process your video files without storing them long-term. Your files are temporarily stored only during processing and are automatically deleted from our servers once complete. We never share your data with third parties.</p>
+                        <p>Unlike many other online converters, we don't require registration or collect personal information, ensuring your conversions remain completely anonymous.</p>
+                    `;
+                } else if (feature === 'premium') {
+                    modalTitle.textContent = 'Premium Quality Output';
+                    modalBody.innerHTML = `
+                        <p>Access advanced audio extraction features that competitors charge for - without paying a dime.</p>
+                        <h3>What You Get For Free:</h3>
+                        <ul>
+                            <li>High-quality audio output with multiple format options</li>
+                            <li>No watermarks on output files</li>
+                            <li>Bitrate options up to 320kbps for MP3 files</li>
+                            <li>Lossless conversion options for WAV format</li>
+                            <li>Priority processing with no queues</li>
+                        </ul>
+                        <h3>Audio Quality Options:</h3>
+                        <p>Our converter provides multiple quality settings to balance file size and audio fidelity:</p>
+                        <ul>
+                            <li><strong>Standard Quality</strong> (128kbps) - Good quality with smaller file size</li>
+                            <li><strong>High Quality</strong> (192kbps) - Great balance of quality and size</li>
+                            <li><strong>Premium Quality</strong> (320kbps) - Near-CD quality sound</li>
+                            <li><strong>Lossless</strong> (WAV) - Perfect preservation of original audio</li>
+                        </ul>
+                        <p>We may offer optional premium support or enterprise features in the future, but our core video-to-audio conversion will always remain free to use with these high-quality options.</p>
+                    `;
+                }
+                
+                modal.style.display = 'block';
+            });
+        });
+        
+        // Close modal functionality
+        document.querySelectorAll('.close-modal').forEach(closeBtn => {
+            closeBtn.addEventListener('click', () => {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.style.display = 'none';
+                });
+            });
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (event) => {
+            document.querySelectorAll('.modal').forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
